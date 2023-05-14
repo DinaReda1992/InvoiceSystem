@@ -46,8 +46,15 @@ Route::post('invoices/update',[InvoicesController::class, 'update'])->name('invo
 Route::get('/edit_invoice/{id}', [InvoicesController::class, 'edit'])->name('invoices.edit');
 Route::delete('invoices', [InvoicesController::class, 'destroy'])->name('invoices.destroy');
 Route::delete('invoices/archive', [InvoicesController::class, 'archive'])->name('invoices.archive');
+Route::get('invoices/paidInvoices', [InvoicesController::class, 'Invoice_Paid'])->name('invoices.paid');
+Route::get('invoices/unPaidInvoices', [InvoicesController::class, 'Invoice_unPaid'])->name('invoices.unPpaid');
+Route::get('invoices/PartiallyPaidInvoices', [InvoicesController::class, 'Invoice_Partial'])->name('invoices.partiallyPaid');
 Route::post('invoices/store',[InvoicesController::class, 'store'])->name('invoices.store');
 Route::get('/section/{id}',[InvoicesController::class, 'getProducts'])->name('getProducts');
+
+Route::get('/Status_show/{id}', [InvoicesController::class , 'show'])->name('Status_show');
+
+Route::post('/Status_Update/{id}', [InvoicesController::class , 'Status_Update'])->name('Status_Update');
 
 //InvoiceDetails
 Route::get('/invoiceDetials/{id}',[InvoiceDetailsController::class, 'edit'])->name('invoiceDetials');
