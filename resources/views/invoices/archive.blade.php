@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفواتير
+الأرشيف
 @stop
 @section('css')
     <!-- Internal Data table css -->
