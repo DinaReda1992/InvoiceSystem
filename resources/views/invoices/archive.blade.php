@@ -83,6 +83,10 @@
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
+                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
+                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
+                                                        الفواتير</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
                                                         data-target="#delete_invoice"><i
@@ -129,6 +133,33 @@
         <!--/div-->
 
         <!--div-->
+    </div>
+    <!--الغاء الارشفة-->
+    <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">إلغاء أرشفة الفاتورة</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="{{ route('invoices.restore') }}" method="post">
+                        {{ method_field('patch') }}
+                        {{ csrf_field() }}
+                </div>
+                <div class="modal-body">
+                    هل انت متأكد من عملية إلغاء الأرشفة ؟
+                    <input type="hidden" name="invoice_id" id="invoice_id" value="">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-success">تأكيد</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
     <!-- حذف الفاتورة -->
     <div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -189,6 +220,14 @@
 
     <script>
         $('#delete_invoice').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var invoice_id = button.data('invoice_id')
+            var modal = $(this)
+            modal.find('.modal-body #invoice_id').val(invoice_id);
+        })
+    </script>
+       <script>
+        $('#Transfer_invoice').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var invoice_id = button.data('invoice_id')
             var modal = $(this)

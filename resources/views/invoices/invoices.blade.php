@@ -232,7 +232,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('invoices.archive') }}" method="post">
+                    <form action="{{ route('invoices.destroy') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>

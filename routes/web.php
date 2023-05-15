@@ -45,7 +45,8 @@ Route::get('invoices/create',[InvoicesController::class, 'create'])->name('invoi
 Route::post('invoices/update',[InvoicesController::class, 'update'])->name('invoices.update');
 Route::get('/edit_invoice/{id}', [InvoicesController::class, 'edit'])->name('invoices.edit');
 Route::delete('invoices', [InvoicesController::class, 'destroy'])->name('invoices.destroy');
-Route::delete('invoices/archive', [InvoicesController::class, 'archive'])->name('invoices.archive');
+Route::patch('invoices/restore', [InvoicesController::class, 'archiveUpdate'])->name('invoices.restore');
+
 Route::get('invoices/paidInvoices', [InvoicesController::class, 'Invoice_Paid'])->name('invoices.paid');
 Route::get('invoices/unPaidInvoices', [InvoicesController::class, 'Invoice_unPaid'])->name('invoices.unPpaid');
 Route::get('invoices/PartiallyPaidInvoices', [InvoicesController::class, 'Invoice_Partial'])->name('invoices.partiallyPaid');
