@@ -41,7 +41,7 @@
                                 <div class="billed-to">
                                     <h6>Dina Reda</h6>
                                     <p>4033 Riyadh, Ishbilya,10301<br>
-                                        Tel No: 324 445-4544<br>
+                                        Tel No: 0593766910<br>
                                         Email: engdondon92@gmail.com</p>
                                 </div>
                             </div>
