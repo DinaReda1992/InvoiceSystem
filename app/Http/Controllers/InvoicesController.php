@@ -264,7 +264,6 @@ class InvoicesController extends Controller
 
     }
 
-
     public function getProducts($id)
     {
         $products = DB::table('items')->where("section_id", $id)->pluck('item_name', 'id');
@@ -292,7 +291,7 @@ class InvoicesController extends Controller
 
     public function Print_invoice($id)
     {
-        $invoices = invoices::where('id', $id)->first();
+        $invoices = Invoice::where('id', $id)->first();
         return view('invoices.Print_invoice',compact('invoices'));
     }
 

@@ -146,12 +146,12 @@
                                                         الدفع</a>
                                                 {{--  @endcan  --}}
 
-                                                    @can('طباعةالفاتورة')
-                                                        <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i
+                                                    {{--  @can('طباعةالفاتورة')  --}}
+                                                        <a class="dropdown-item" href="{{ route('invoices.printInvoice', $invoice->id) }}"><i
                                                                 class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                             الفاتورة
                                                         </a>
-                                                    @endcan
+                                                    {{--  @endcan  --}}
                                                 </div>
                                             </div>
 

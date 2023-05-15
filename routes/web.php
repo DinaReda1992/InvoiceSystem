@@ -50,6 +50,7 @@ Route::patch('invoices/restore', [InvoicesController::class, 'archiveUpdate'])->
 Route::get('invoices/paidInvoices', [InvoicesController::class, 'Invoice_Paid'])->name('invoices.paid');
 Route::get('invoices/unPaidInvoices', [InvoicesController::class, 'Invoice_unPaid'])->name('invoices.unPpaid');
 Route::get('invoices/PartiallyPaidInvoices', [InvoicesController::class, 'Invoice_Partial'])->name('invoices.partiallyPaid');
+Route::get('invoices/Print/{id}', [InvoicesController::class, 'Print_invoice'])->name('invoices.printInvoice');
 Route::post('invoices/store',[InvoicesController::class, 'store'])->name('invoices.store');
 Route::get('/section/{id}',[InvoicesController::class, 'getProducts'])->name('getProducts');
 
