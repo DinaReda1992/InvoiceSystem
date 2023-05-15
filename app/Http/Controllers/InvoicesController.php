@@ -232,10 +232,10 @@ class InvoicesController extends Controller
         $invoices = Invoice::where('id', $id)->first();
         $Details = Invoice_attachments::where('invoice_id', $id)->first();
 
-         $id_page =$request->id_page;
+         $archive =$request->archive;
 
 
-        if (!$id_page==2) {
+        if (!$archive==1) {
 
         if (!empty($Details->invoice_number)) {
 
