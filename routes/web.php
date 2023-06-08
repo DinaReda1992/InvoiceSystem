@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\InvoicesController;
@@ -31,9 +33,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/{page}', [AdminController::class, 'index']);
 //Route::resource('invoices', InvoicesController::class);
 
@@ -46,6 +48,9 @@ Route::post('invoices/update',[InvoicesController::class, 'update'])->name('invo
 Route::get('/edit_invoice/{id}', [InvoicesController::class, 'edit'])->name('invoices.edit');
 Route::delete('invoices', [InvoicesController::class, 'destroy'])->name('invoices.destroy');
 Route::patch('invoices/restore', [InvoicesController::class, 'archiveUpdate'])->name('invoices.restore');
+Route::get('invoices/export/', [InvoicesController::class, 'export'])->name('invoicesExport');
+Route::get('invoices/import/', [InvoicesController::class, 'import'])->name('invoicesImport');
+
 
 Route::get('invoices/paidInvoices', [InvoicesController::class, 'Invoice_Paid'])->name('invoices.paid');
 Route::get('invoices/unPaidInvoices', [InvoicesController::class, 'Invoice_unPaid'])->name('invoices.unPpaid');
@@ -87,6 +92,31 @@ Route::post('items/store',[ItemsController::class, 'store'])->name('items.store'
 Route::delete('items/{id}', [ItemsController::class, 'destroy'])->name('items.destroy');
 Route::post('items/{item}/update',[ItemsController::class, 'update'])->name('items.update');
 //Route::resource('items', ItemsController::class);
+
+Route::group(['middleware' => ['auth']], function() {
+// Route::resource('roles','RoleController');
+Route::get('roles/index', [RoleController::class, 'index'])->name('roles.index');
+Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
+Route::post('roles/store', [RoleController::class, 'store'])->name('roles.store');
+Route::get('roles/{id}/show', [RoleController::class , 'show'])->name('roles.show');
+Route::get('roles/{id}', [RoleController::class, 'edit'])->name('roles.edit');
+Route::post('roles/{id}/update',[RoleController::class, 'update'])->name('roles.update');
+Route::delete('roles', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+
+Route::get('users/index', [UserController::class, 'index'])->name('users.index');
+Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('users/store', [UserController::class, 'store'])->name('users.store');
+Route::get('users/{id}', [UserController::class , 'show'])->name('users.show');
+Route::get('users/{id}', [UserController::class, 'edit'])->name('users.edit');
+Route::delete('users', [UserController::class, 'destroy'])->name('users.destroy');
+
+Route::post('users/{id}/update',[UserController::class, 'update'])->name('users.update');
+
+
+
+//  Route::resource('users','UserController');
+});
 
 
 

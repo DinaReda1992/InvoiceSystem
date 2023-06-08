@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Invoice;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Models\InvoiceDetails;
+use App\Exports\InvoicesExport;
+use App\Imports\InvoicesImport;
 use Illuminate\Support\Facades\DB;
 use App\Models\Invoice_attachments;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Notifications\InvoiceCreation;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 
 class InvoicesController extends Controller
 {
@@ -96,12 +102,12 @@ class InvoicesController extends Controller
             $imageName = $request->pic->getClientOriginalName();
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
-           // $user = User::first();
-           // Notification::send($user, new AddInvoice($invoice_id));
-        //$user = User::get();
-       // $invoices = Invoice::latest()->first();
-       // Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
-       // event(new MyEventClass('hello world'));
+        // $user = User::first();
+        // Notification::send($user, new InvoiceCreation($invoice_id));
+        // $user = User::get();
+        // $invoices = Invoice::latest()->first();
+        // Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+        // event(new MyEventClass('hello world'));
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return redirect('/invoices/index');
@@ -293,6 +299,18 @@ class InvoicesController extends Controller
     {
         $invoices = Invoice::where('id', $id)->first();
         return view('invoices.Print_invoice',compact('invoices'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new InvoicesExport, 'invoices.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new InvoicesImport, 'invoices.xlsx', 'public_uploads');
+
+        return redirect('/invoices/index')->with('success', 'All good!');
     }
 
 }

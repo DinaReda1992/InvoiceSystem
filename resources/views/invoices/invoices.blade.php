@@ -37,6 +37,17 @@
     }
 </script>
 @endif
+@if (session()->has('success'))
+<script>
+    window.onload= function()
+    {
+        notif({
+            msg : "تم إضافة فاتورة من Excel",
+            type: "success"
+        })
+    }
+</script>
+@endif
 @if (session()->has('Status_Update'))
 <script>
     window.onload = function() {
@@ -54,14 +65,16 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
                         <a href={{ route('invoices.create') }} class="modal-effect btn btn-sm btn-primary"
                             style="color:white">
                             <i class="fas fa-plus"></i>&nbsp; إضافة فاتورة</a>
-                            <a href={{ route('indexArchived') }} class="modal-effect btn btn-sm btn-primary"
+                            <a href={{ route('invoicesExport') }} class="modal-effect btn btn-sm btn-primary"
                             style="color:white">
-                            <i class="fas fa-book"></i>&nbsp;  الأرشيف</a>
-                    </div>
+                            <i class="fas fa-file"></i>&nbsp;  تصدير Excel</a>
+                            <a href={{ route('invoicesImport') }} class="modal-effect btn btn-sm btn-primary"
+                            style="color:white">
+                            <i class="fas fa-file"></i>&nbsp;  إضافة ملف Excel</a>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
