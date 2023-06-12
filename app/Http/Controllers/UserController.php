@@ -123,10 +123,11 @@ return redirect()->route('users.index')
 * @return \Illuminate\Http\Response
 */
 
-public function destroy($id)
+public function destroy(Request $request)
 {
-User::find($id)->delete();
-return redirect()->route('users.index')
-->with('success','User deleted successfully');
+    $id = $request->id;
+    User::find($id)->delete();
+    return redirect()->route('users.index')
+    ->with('success','User deleted successfully');
 }
 }

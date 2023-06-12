@@ -109,7 +109,7 @@ Route::get('users/create', [UserController::class, 'create'])->name('users.creat
 Route::post('users/store', [UserController::class, 'store'])->name('users.store');
 Route::get('users/{id}', [UserController::class , 'show'])->name('users.show');
 Route::get('users/{id}', [UserController::class, 'edit'])->name('users.edit');
-Route::delete('users', [UserController::class, 'destroy'])->name('users.destroy');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::post('users/{id}/update',[UserController::class, 'update'])->name('users.update');
 
