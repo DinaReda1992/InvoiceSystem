@@ -10,6 +10,7 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\InvoiceAttachmentsController;
+use App\Http\Controllers\InvoicesReportController;
 
 
 /*
@@ -115,7 +116,14 @@ Route::post('users/{id}/update',[UserController::class, 'update'])->name('users.
 
 
 
-//  Route::resource('users','UserController');
+Route::get('invoices/invoices_report', [InvoicesReportController::class, 'index']);
+
+Route::post('Search_invoices', [InvoicesReportController::class,'Search_invoices']);
+
+
+
+
+
 });
 
 
