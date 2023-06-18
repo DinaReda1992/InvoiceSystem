@@ -36,7 +36,11 @@ class InvoicesReportController extends Controller
            else {
 
              $start_at = date($request->start_at);
-             $end_at = date($request->end_at);
+             if($request->end_at){
+                    $end_at = date($request->end_at);
+                }
+                else
+                $end_at = now();
              $type = $request->type;
 
              $invoices = Invoice::whereBetween('invoice_date',[$start_at,$end_at])->where('status','=',$request->type)->get();

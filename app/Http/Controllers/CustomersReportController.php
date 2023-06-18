@@ -37,7 +37,11 @@ class CustomersReportController extends Controller
      else {
 
        $start_at = date($request->start_at);
-       $end_at = date($request->end_at);
+       if($request->end_at){
+        $end_at = date($request->end_at);
+    }
+    else
+    $end_at = now();
 
       $invoices = Invoice::whereBetween('invoice_Date',[$start_at,$end_at])->where('section_id','=',$request->Section)->where('product','=',$request->product)->get();
        $sections = Section::all();
