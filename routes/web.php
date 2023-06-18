@@ -9,8 +9,9 @@ use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\InvoiceDetailsController;
-use App\Http\Controllers\InvoiceAttachmentsController;
 use App\Http\Controllers\InvoicesReportController;
+use App\Http\Controllers\CustomersReportController;
+use App\Http\Controllers\InvoiceAttachmentsController;
 
 
 /*
@@ -120,7 +121,9 @@ Route::get('invoices/invoices_report', [InvoicesReportController::class, 'index'
 
 Route::post('Search_invoices', [InvoicesReportController::class,'Search_invoices']);
 
+Route::get('invoices/customers_report', [CustomersReportController::class,'index'])->name("customers_report");
 
+Route::post('Search_customers', [CustomersReportController::class,'Search_customers']);
 
 
 
