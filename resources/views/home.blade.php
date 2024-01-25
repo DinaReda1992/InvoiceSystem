@@ -82,7 +82,7 @@
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
 											<span class="text-white op-7">
-                                                {{round((\App\Models\Invoice::where('value_status','2')->count()/$count)*100,2)}}     %     
+                                                {{round((\App\Models\Invoice::where('value_status','2')->count()/$count)*100,2)}}     %
                                             </span>
 										</span>
 									</div>
@@ -161,22 +161,8 @@
 								</div>
 								<p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p>
 							</div>
-							<div class="card-body">
-								<div class="total-revenue">
-									<div>
-									  <h4>120,750</h4>
-									  <label><span class="bg-primary"></span>success</label>
-									</div>
-									<div>
-									  <h4>56,108</h4>
-									  <label><span class="bg-danger"></span>Pending</label>
-									</div>
-									<div>
-									  <h4>32,895</h4>
-									  <label><span class="bg-warning"></span>Failed</label>
-									</div>
-								  </div>
-								<div id="bar" class="sales-bar mt-4"></div>
+							<div class="card-body" style="width:75%;">
+                                {!! $chartjsBar->render() !!}
 							</div>
 						</div>
 					</div>
@@ -185,7 +171,7 @@
 							<label class="main-content-label">Sales Revenue by Customers in USA</label>
 							<span class="d-block mg-b-20 text-muted tx-12">Sales Performance of all states in the United States</span>
 							<div class="">
-								<div class="vmap-wrapper ht-180" id="vmap2"></div>
+                                {!! $chartjs->render() !!}
 							</div>
 						</div>
 					</div>
@@ -193,7 +179,7 @@
 				<!-- row closed -->
 
 				<!-- row opened -->
-				<div class="row row-sm">
+				{{--  <div class="row row-sm">
 					<div class="col-xl-4 col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header pb-1">
@@ -457,7 +443,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- /row -->
+				<!-- /row -->  --}}
 			</div>
 		</div>
 		<!-- Container closed -->
